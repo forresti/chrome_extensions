@@ -1,0 +1,17 @@
+
+
+first goal: just parse the "year, make, model" tag.
+<title>Cars for Sale: 2004 MINI Cooper S Hardtop in Fife, WA 98424: Hatchback Details - 368635674 - AutoTrader.com</title>
+
+
+strange:
+  AutoTrader doesn't have a <make> or <model> tag in the HTML; it just has strings like "2004 MINI Cooper S Hardtop " buried around the page.
+
+  on m.autotrader.com, we get: <div class="infoWindowContent"> <h5>2006 MINI Cooper S</h5> ... </div>
+
+
+cars.com is a bit easier to parse... it has stuff like this (e.g. on a 2005 Ford GT ad):
+  <ul class="more-research list" > 
+    <li><a href="/ford/gt/2005/expert-reviews/">Expert Reviews</a></li> 
+  </ul>
+
