@@ -7,6 +7,13 @@ first goal: just parse the "year, make, model" tag.
 strange:
   AutoTrader doesn't have a <make> or <model> tag in the HTML; it just has strings like "2004 MINI Cooper S Hardtop " buried around the page.
 
+  on desktop autotrader.com, this seems to be the best string:
+    <div class="page-header atcui-clearfix atcui-span-14 vdpr">
+    <h1 class="listing-title atcui-block" title="2014 Chevrolet Camaro SS Convertible   Puyallup, WA 98371">
+      New 2014 Chevrolet Camaro //USE THIS
+      <span class="heading-trim"> SS Convertible</span>
+    </h1>
+
   on m.autotrader.com, we get: <div class="infoWindowContent"> <h5>2006 MINI Cooper S</h5> ... </div>
 
 
