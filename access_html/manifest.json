@@ -8,7 +8,7 @@
         "scripts": ["background.js"]
     },
     "content_scripts": [{
-        "matches": ["*"],
+        "matches": ["<all_urls>"],
         "js":      ["content.js"]
     }],
     "browser_action": {
