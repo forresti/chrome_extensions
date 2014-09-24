@@ -1,6 +1,12 @@
 var current,
     interval;
 
+//get car info from autotrader page
+//var getCarInfo = function(){...}
+
+//get car price from our server (which queries Edmunds)
+//var requestCarPrice = function(){...}
+
 var injector = function(){
 
     //var priceDiv = document.getElementsByClassName("price-summary-area");
@@ -8,15 +14,15 @@ var injector = function(){
     priceDiv = priceDiv[0];
     console.log(priceDiv);    
 
-    var h=document.createElement("h4");
-    var t=document.createTextNode("hi from forrest");
-    h.appendChild(t);
-    //document.body.appendChild(h);
-    //priceDiv.appendChild(h);
-    //priceDiv.innerHTML = priceDiv.innerHTML + "hi from Forrest";
+    //original priceDiv.innerHTML: <span title="Subaru BRZ Car Price $31,381 ">$31,381</span> 
+    //console.log("priceDiv.innerHTML:" + priceDiv.innerHTML);
+    //priceDiv.innerHTML = priceDiv.innerHTML + '<br><span class="price-valuation" source="edmunds">$29000</span>';
 
+    askingPriceStr = "asking price:<br>" + priceDiv.innerHTML;
+    edmundsPriceStr = '<br>Edmunds TMV: <br> <span class="price-valuation" source="edmunds">$29000</span>';
     //TODO: create a 'content.css' file that dresses up price-valuation.
-    priceDiv.innerHTML = priceDiv.innerHTML + '<span class="price-valuation" source="edmunds">$29000</span>'
+
+    priceDiv.innerHTML = askingPriceStr + edmundsPriceStr; //write changes to AutoTrader DOM
 }
 
 console.log("hi from forrest");
