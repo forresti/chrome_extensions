@@ -6,7 +6,8 @@ function doStuffWithDOM(domContent) {
 }
 
 /* When the browser-action button is clicked... */
-chrome.browserAction.onClicked.addListener(function(tab) {
+chrome.browserAction.onClicked.addListener(function(tab) { //works
+//chrome.tabs.onUpdated.addListener(function (tab) { //breaks doStuffWithDOM
     chrome.tabs.sendMessage(tab.id, { text: "report_back" }, doStuffWithDOM);
 });
 
