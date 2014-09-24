@@ -38,12 +38,49 @@ var ymm_parse = function(){
     ymmData.year = year;
     ymmData.make = makeModel.make;
     ymmData.model = makeModel.model;
+    ymmData.miles = document.getElementsByClassName("mileage")[0].innerHTML.split(" ")[1]; //"Mileage: 400" -> "400"
 
     return ymmData; //e.g. new_or_used:new, year:2014, make:Subaru, model:BRZ
 }
 
+//thx: http://stackoverflow.com/questions/247483/http-get-request-in-javascript 
+function httpGet(theUrl){
+    var xmlHttp = null;
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
 //get car price from our server (which queries Edmunds)
-//var requestCarPrice = function(){...}
+//@return ymmData, with an 'edmundsPrice_privateParty' and 'edmundsPrice_retail' fields.
+var requestCarPrice = function(ymmData){
+    //step 1: get style ID
+    url = 'http://api.edmunds.com/v1/api/vehicle/modelyearrepository/foryearmakemodel?make=' + ymmData.make + 
+                                                                                   '&model=' + ymmData.model + 
+                                                                                    '&year=' + ymmData.year +
+                                                                 '&api_key=cascy99pcgsnf2xjw58jeg25&fmt=json';
+    console.log('get style list: ' + url);
+    responseText=httpGet(url); //TODO: catch if this styleHolder is empty. (e.g. with 1989 porsche 911)
+    responseText = JSON.parse(responseText);
+
+    style = responseText.modelYearHolder[0].usedDefaultStyle.link; //e.g. /api/vehicle/style/200487466 for range rover
+    style_parts = style.split('/'); 
+    style = style_parts[ (style_parts.length - 1) ]; //200487466
+    console.log("style ID: " + style);
+    ymmData.styleID = style;
+
+    //step 2: get price
+    url = 'http://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?api_key=cascy99pcgsnf2xjw58jeg25&styleid=' + style + 
+                                                                '&zip=94709&mileage=' + ymmData.miles + '&fmt=json&condition=Clean';
+
+    console.log('get price: ' + url);
+    responseText=httpGet(url);
+    responseText = JSON.parse(responseText);
+    ymmData.edmundsPrice_retail = responseText.tmv.nationalBasePrice.usedTmvRetail; //TODO: handle new vs used? 
+
+    return ymmData;
+}
 
 var injector = function(){
 
@@ -65,6 +102,8 @@ console.log("hi from forrest");
 //console.log("brandList: " + brandList); //included from brandList.js (see manifest.json for how this works)
 
 ymm_json = ymm_parse();
+
+requestCarPrice(ymm_json);
 console.log(JSON.stringify(ymm_json));
 
 //interval = setInterval(injector,1000)
