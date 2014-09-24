@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "AutoTrader mockup",
-  "description": "This extension is a toy example of parsing AutoTrader.",
+  "description": "This extension is a toy example of parsing AutoTradera",
   "version": "1.0",
 
   "permissions": [
@@ -10,7 +10,7 @@
   ],
   "content_scripts": [
     {
-      "js" : ["content.js"],
+      "js" : ["brandList.js", "content.js"],
       "run_at" : "document_end",
       "matches": [ "https://www.autotrader.com/*", "http://www.autotrader.com/*" ]
     }
