@@ -34,3 +34,28 @@ asking prices on autotrader (planning to insert our data below this):
     <div class="hoonify-price">
         Edmunds Price: <span class="price-valuation" source="edmunds"> $29,000 </span>
     </div>
+
+autotrader internal notations:
+    Subaru BRZ
+    make: SUB
+    model: SUBBRZ
+
+    Land Rover Range Rover
+    make: ROV
+    model: RANGE
+
+other places where we could parse make/model on AutoTrader pages:
+    contains year, make, model, trim:
+    <div id="j_id_18a" class="atcui atcui-form-row atcui-clearfix   " style="">
+        <a href="/cars-for-sale/creditapp.xhtml?dealerId=53500992&amp;make=Land+Rover&amp;model=Range+Rover&amp;trim=Autobiography+Black&amp;year=2014&amp;listingId=376562485&amp;price=265000&amp;vin=48%7C66%7C-85%7C-114%7C-36%7C28%7C-79%7C-120%7C110%7C117%7C30%7C-79%7C-11%7C79%7C-4%7C50%7C-40%7C104%7C113%7C11%7C-14%7C-91%7C-118%7C-10&amp;stock_id=CONS&amp;mis=FILOBDMGCA510&amp;dealer_id=53500992&amp;address=85054&amp;Log=0" target="_blank"><img src="http://images.autotrader.com/images/direct/credit_app/2014/02/21/53500992/53500992_1393013721344_CREDIT_APP_adtile.gif" alt="" class="dealer-tile" /></a>
+    </div>
+
+test pages:
+
+  http://www.autotrader.com/cars-for-sale/vehicledetails.xhtml?zip=98465&endYear=2015&modelCode1=RANGE&showcaseOwnerId=0&startYear=1981&makeCode1=ROV&searchRadius=0&showcaseListingId=0&mmt=%5BROV%5BRANGE%5B%5D%5D%5B%5D%5D&listingId=376562485&Log=0
+
+  http://www.autotrader.com/cars-for-sale/vehicledetails.xhtml?zip=98465&endYear=2015&modelCode1=SUBBRZ&showcaseOwnerId=100008272&startYear=1981&makeCode1=SUB&searchRadius=0&showcaseListingId=368539254&mmt=%5BSUB%5BSUBBRZ%5B%5D%5D%5B%5D%5D&listingId=377467866&Log=0
+
+  http://www.autotrader.com/cars-for-sale/vehicledetails.xhtml?zip=98465&endYear=1992&showcaseOwnerId=568534&startYear=1981&searchRadius=0&listingId=372026238&Log=0    //old porsche 911
+
+

@@ -62,7 +62,7 @@ var injector = function(){
 }
 
 console.log("hi from forrest");
-//console.log("brandList: " + brandList); //included from brandList.js (see manifest.json for how this works)
+console.log("brandList: " + brandList); //included from brandList.js (see manifest.json for how this works)
 
 ymm_json = ymm_parse();
 console.log(JSON.stringify(ymm_json));

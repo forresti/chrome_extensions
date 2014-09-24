@@ -12,7 +12,7 @@
     {
       "js" : ["brandList.js", "content.js"],
       "run_at" : "document_end",
-      "matches": [ "https://www.autotrader.com/*", "http://www.autotrader.com/*" ]
+      "matches": [ "https://www.autotrader.com/cars-for-sale/vehicledetails*", "http://www.autotrader.com/cars-for-sale/vehicledetails*" ]
     }
   ]
 }
