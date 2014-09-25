@@ -39,6 +39,7 @@ var ymm_parse = function(){
     ymmData.make = makeModel.make;
     ymmData.model = makeModel.model;
     ymmData.miles = document.getElementsByClassName("mileage")[0].innerHTML.split(" ")[1]; //"Mileage: 400" -> "400"
+    ymmData.miles = ymmData.miles.replace(',', ''); //remove commas
 
     return ymmData; //e.g. new_or_used:new, year:2014, make:Subaru, model:BRZ
 }
@@ -79,20 +80,22 @@ var requestCarPrice = function(ymmData){
     responseText = JSON.parse(responseText);
     ymmData.edmundsPrice_retail = responseText.tmv.nationalBasePrice.usedTmvRetail; //TODO: handle new vs used? 
 
+    ymmData.edmundsPrice_retail_link = 'http://www.edmunds.com/' + ymmData.make.toLowerCase() + '/' + ymmData.model.toLowerCase() + '/' + 
+                                                    ymmData.year + '/tmv-appraise.html?style=' + ymmData.styleID;
+
     return ymmData;
 }
 
-var injector = function(){
+var injector = function(ymmData){
 
     //var priceDiv = document.getElementsByClassName("price-summary-area");
     var priceDiv = document.getElementsByClassName("primary-price"); //actually an h4, not a div.
-    priceDiv = priceDiv[0];
-    console.log(priceDiv);    
-
-    //original priceDiv.innerHTML: <span title="Subaru BRZ Car Price $31,381 ">$31,381</span> 
+    priceDiv = priceDiv[0]; //priceDiv.innerHTML: <span title="Subaru BRZ Car Price $31,381 ">$31,381</span> 
+    console.log(priceDiv); 
 
     askingPriceStr = "asking price:<br>" + priceDiv.innerHTML;
-    edmundsPriceStr = '<br>Edmunds TMV: <br> <span class="price-valuation" source="edmunds">$29000</span>';
+    edmundsPriceStr = '<br>Edmunds TMV: <br> <span class="price-valuation" source="edmunds">$' + ymmData.edmundsPrice_retail + '</span>' + 
+                      '<a href=' + ymmData.edmundsPrice_retail_link + '> (more)</a>';
     //TODO: create a 'content.css' file that dresses up price-valuation.
 
     priceDiv.innerHTML = askingPriceStr + edmundsPriceStr; //write changes to AutoTrader DOM
@@ -102,10 +105,11 @@ console.log("hi from forrest");
 //console.log("brandList: " + brandList); //included from brandList.js (see manifest.json for how this works)
 
 ymm_json = ymm_parse();
+console.log(JSON.stringify(ymm_json));
 
 requestCarPrice(ymm_json);
 console.log(JSON.stringify(ymm_json));
 
 //interval = setInterval(injector,1000)
-injector();
+injector(ymm_json);
 
