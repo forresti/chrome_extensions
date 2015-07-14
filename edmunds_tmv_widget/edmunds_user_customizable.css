@@ -1,0 +1,23 @@
+/*
+TODO: for now, include this in HTML page.
+TODO: later, hack this to do what I want
+<link rel="stylesheet" href="http://widgets.edmunds.com/css/tmv/simple-light.css">
+*/
+
+/* "officially" user-customizable Edmunds widget attributes */
+.tmvwidget
+{
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  border-width:1px;
+  width:248px;
+}
+.tmvwidget .tmvwidget-header{
+  -webkit-border-top-right-radius:5px;
+  -moz-border-radius-topright:5px;
+  border-top-right-radius:5px;
+  -webkit-border-top-left-radius:5px;
+  -moz-border-radius-topleft:5px;
+  border-top-left-radius:5px;
+}
