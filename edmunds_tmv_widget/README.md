@@ -17,6 +17,7 @@ _index.html
 problems (UI):
 - nothing gets triggered by widget.on('load:years', ...). huh?
  (When I manually poke around in 'years' from the Chrome console, things make sense.)
+ --> solved: tmvwidget.js had a bug, where 'load:years' is never reached. I hacked in a bugfix and emailed Edmunds about it.
 
 - need to wait for Makes to load before auto-selecting Make.
  --> solved: widget.on('load:makes', callback=selectMake);

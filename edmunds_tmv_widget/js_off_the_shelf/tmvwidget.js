@@ -285,7 +285,9 @@
         return this.make = a, a ? (this.resetModels("Loading Models..."), this.loadModels(a), this) : void this.resetModels()
     }, d.onModelChange = function(a) {
         var b, c;
-        return a ? (b = a.substring(0, a.indexOf(":")), c = this.parseYears(this.models[a], this.getOptions().showVehicles), this.model = b, this.submodel = a.substring(a.indexOf(":") + 1), this.resetYears(), this.setYears(c), this) : void this.resetYears()
+        return a ? (b = a.substring(0, a.indexOf(":")), c = this.parseYears(this.models[a], this.getOptions().showVehicles), this.model = b, this.submodel = a.substring(a.indexOf(":") + 1), this.resetYears(), this.setYears(c), 
+            this.trigger("load:years", a), /* Forrest fixed this. */
+            this) : void this.resetYears()
     }, d.onStyleChange = function(a) {
         if (this.style = a, !a) return this.resetPrice(), void this.disableButton();
         this.resetPrice();

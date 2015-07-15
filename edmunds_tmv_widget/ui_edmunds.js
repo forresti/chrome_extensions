@@ -21,17 +21,20 @@
             fjs.parentNode.insertBefore(s, fjs);
         },
         loadWidget: function() {
-            tmv.loadjs('http://widgets.edmunds.com/js/tmv/tmvwidget.js', tmv.initWidget);
+            //tmv.loadjs('http://widgets.edmunds.com/js/tmv/tmvwidget.js', tmv.initWidget);
+            tmv.loadjs('./js_off_the_shelf/tmvwidget.js', tmv.initWidget); //modified to fix 'load:years' trigger
         },
         initWidget: function() {
             var widget = new EDM.TMV(apikey, {root: 'tmvwidget', baseClass: 'tmvwidget'});
             widget.init({"includedMakes":"all","price":"tmv-invoice-msrp","showVehicles":"ALL","zip":"94720"});
             widget.render();
 
-            //Forrest's callbacks to load makes (TODO: receive YMM from AutoTrader parser)
+            //Forrest's callbacks to auto-fill widget (TODO: receive YMM from AutoTrader parser)
+            //note: if we don't wait for these things to load, the lists of makes/models/years are Undefined.
             widget.on('load:makes', selectMake);
+            //widget.on('change:makes', (function(){ alert('change:makes'); }) ); //doesn't show alert?
             widget.on('load:models', selectModel);
-            widget.on('load:years', selectYear); 
+            widget.on('load:years', selectYear);  
         }
     }
     tmv.init();
@@ -44,17 +47,17 @@
 //find the matching make in the <select> drop-down, and choose it.
 function setSelectedIndex(s, v) {
     for ( var i = 0; i < s.options.length; i++ ) {
-        console.log(s.options[i].value)
+        //console.log(s.options[i].value);
         if ( s.options[i].value == v ) {
             s.options[i].selected = true;
-            s.onchange(); //trigger Edmunds widget to pull Models
+            s.onchange(); //trigger Edmunds widget to load next drop-down (e.g. models, years, ...)
             return;
         }
     }
 }
 
 //TODO: refactor
-//function selectField(selectorClass='tmvwidget-make', value='BMW')
+//function selectField(selectorClass='tmvwidget-make', value='bmw')
 
 function selectMake(){
     var selector = document.getElementsByClassName("tmvwidget-make")[0];
