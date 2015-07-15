@@ -29,7 +29,9 @@
             widget.render();
 
             //Forrest's callbacks to load makes (TODO: receive YMM from AutoTrader parser)
-            widget.on('load:makes', selectMake); 
+            widget.on('load:makes', selectMake);
+            widget.on('load:models', selectModel);
+            widget.on('load:years', selectYear); 
         }
     }
     tmv.init();
@@ -42,6 +44,7 @@
 //find the matching make in the <select> drop-down, and choose it.
 function setSelectedIndex(s, v) {
     for ( var i = 0; i < s.options.length; i++ ) {
+        console.log(s.options[i].value)
         if ( s.options[i].value == v ) {
             s.options[i].selected = true;
             s.onchange(); //trigger Edmunds widget to pull Models
@@ -50,17 +53,25 @@ function setSelectedIndex(s, v) {
     }
 }
 
-//TODO: take Make (e.g. 'bmw') as input
-function selectMake(){
-    var make_menu = document.getElementsByClassName("tmvwidget-make")[0];
-    console.log(make_menu);
-    var s = make_menu;
-    var v = 'bmw';
+//TODO: refactor
+//function selectField(selectorClass='tmvwidget-make', value='BMW')
 
-    setSelectedIndex(s, v);
+function selectMake(){
+    var selector = document.getElementsByClassName("tmvwidget-make")[0];
+    var value = 'bmw'; //TODO: take Make (e.g. 'bmw') as input
+    setSelectedIndex(selector, value);
 };
 
+function selectModel(){
+    var selector = document.getElementsByClassName("tmvwidget-model")[0];
+    var value = '3-series:diesel'; //TODO: take Model as input
+    setSelectedIndex(selector, value);
+};
 
-
-//selectMake();
+function selectYear(){
+    console.log("hello from selectYear");
+    var selector = document.getElementsByClassName("tmvwidget-year")[0];
+    var value = '2011USED'; //TODO: take Year as input
+    setSelectedIndex(selector, value);
+};
 

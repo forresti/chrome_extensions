@@ -15,6 +15,9 @@ _index.html
 
 
 problems (UI):
+- nothing gets triggered by widget.on('load:years', ...). huh?
+ (When I manually poke around in 'years' from the Chrome console, things make sense.)
+
 - need to wait for Makes to load before auto-selecting Make.
  --> solved: widget.on('load:makes', callback=selectMake);
 
