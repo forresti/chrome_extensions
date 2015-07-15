@@ -332,16 +332,11 @@
 
 <script>
   var make_menu = document.getElementsByClassName("tmvwidget-make");
-  //console.log(make_menu);
-  console.log(make_menu[0]);
-  console.log(make_menu[0].length);
   var s = make_menu[0];
-  var v = 'bmw';
+  var v = 'bmw'; //needs to be lowercase
   for ( var i = 0; i < s.options.length; i++ ) {
-    console.log(s.options[i].value);
     if ( s.options[i].value == v ) {
       s.options[i].selected = true;
     }
   }
-
 </script>
