@@ -28,8 +28,7 @@
             widget.init({"includedMakes":"all","price":"tmv-invoice-msrp","showVehicles":"ALL","zip":"94720"});
             widget.render();
 
-
-            //widget.trigger('change:make', 2); //doesn't do anything. 
+            //Forrest's callbacks to load makes (TODO: receive YMM from AutoTrader parser)
             widget.on('load:makes', selectMake); 
         }
     }
@@ -37,6 +36,7 @@
 
 }(document, 'script', 'cascy99pcgsnf2xjw58jeg25'));
 
+//TODO: take Make (e.g. 'bmw') as input
 function selectMake(){
     var make_menu = document.getElementsByClassName("tmvwidget-make")[0];
     console.log(make_menu);
@@ -44,12 +44,13 @@ function selectMake(){
     var v = 'bmw';
 
     //find the matching make in the <select> drop-down, and choose it.
+    //TODO: encapsulate the following in a function.
     for ( var i = 0; i < s.options.length; i++ ) {
         if ( s.options[i].value == v ) {
             s.options[i].selected = true;
         }
     }
-
+    s.onchange(); //trigger Edmunds widget to pull Models
 };
 
 
