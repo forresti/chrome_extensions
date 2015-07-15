@@ -28,6 +28,32 @@
         }
     }
     tmv.init();
+
+    /* verify that this document INCLUDES stuff rendered in widget above. (yes.) */
+    var all = document.getElementsByTagName("*");
+    //alert(all);
+    //console.log(all);
+
+    /* auto-select a specific Make... */ 
+    //FIXME: make_menu is an array with stuff in it, but make_menu[0] is undefined. huh?
+    //var make_menu = document.getElementsByClassName("tmvwidget-make");//[0];
+    //make_menu.remove(0); //zeroth element is empty and breaks the 'options.length' below
+    //make_menu = document.getElementById("edm1436923668485_make"); //null
+    console.log(make_menu);
+    //<option value="acura">
+    //alert(make_menu.option.value[0]);
+
+    //TODO: make a function out of this as in http://stackoverflow.com/questions/8140862/how-to-select-a-value-in-dropdown-javascript
+    var s = make_menu;
+    var v = 'BMW';
+    // FIXME: it doesn't like 's.options.length', perhaps because there one of the options is empty (thx: stackoverflow.com/questions/17583366)
+    for ( var i = 0; i < s.options.length; i++ ) {
+        if ( s.options[i].value == v ) {
+            s.options[i].selected = true;
+            return;
+        }
+    }
+ 
 }(document, 'script', 'cascy99pcgsnf2xjw58jeg25'));
 
 
