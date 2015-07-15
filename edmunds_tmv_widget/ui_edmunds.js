@@ -1,12 +1,5 @@
-<link rel="stylesheet" href="http://widgets.edmunds.com/css/tmv/simple-light.css">
-<link rel="stylesheet" href="edumunds_user_customizable.css">
+/* TODO: figure how to export this in a modular way */
 
-<!-- thx: http://developer.edmunds.com/widgets_and_apps/market_value.html -->
-
-<div id="tmvwidget"></div> <!-- to be filled by Javascript below -->
-
-<!--
-<script type="text/javascript">
 (function(d, tag, apikey){
     var tmv = {
         init: function() {
@@ -36,7 +29,3 @@
     }
     tmv.init();
 }(document, 'script', 'cascy99pcgsnf2xjw58jeg25'));
-</script>
--->
-
-<script src="ui_edmunds.js"></script>
