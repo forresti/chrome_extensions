@@ -10,7 +10,8 @@ _index.html
   edmunds.com/.../simple-light.css #hard-coded stuff (could make my own version)
   
   ui_edmunds.js 
-    edmunds.com/.../tmvwidget.js 
+    tmv.initWidget() #Forrest's auto-fill modifications are in here
+    edmunds.com/.../tmvwidget.js #fixed a bug on triggering 'load:years' 
       edmunds.com/.../sdk.js #EDMUNDSAPI()
 
 

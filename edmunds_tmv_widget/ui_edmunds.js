@@ -35,6 +35,8 @@
             //widget.on('change:makes', (function(){ alert('change:makes'); }) ); //doesn't show alert?
             widget.on('load:models', selectModel);
             widget.on('load:years', selectYear);  
+            widget.on('load:styles', selectStyle);
+            widget.loadPrice(); //equivalent to clicking the Get Price button 
         }
     }
     tmv.init();
@@ -72,9 +74,18 @@ function selectModel(){
 };
 
 function selectYear(){
-    console.log("hello from selectYear");
     var selector = document.getElementsByClassName("tmvwidget-year")[0];
     var value = '2011USED'; //TODO: take Year as input
     setSelectedIndex(selector, value);
+};
+
+function selectStyle(){
+    var selector = document.getElementsByClassName("tmvwidget-style")[0];
+    //var value = '101288741'; //contains "335d 4dr Sedan (3.0L 6cyl Turbodiesel 6A)"
+    //setSelectedIndex(selector, value);
+
+    //for now, let's just default to the first trim level in the list
+    selector.options[1].selected=true;
+    selector.onchange(); 
 };
 
