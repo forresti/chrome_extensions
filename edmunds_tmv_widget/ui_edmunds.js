@@ -31,10 +31,13 @@
         }
     }
     tmv.init();
-
- 
 }(document, 'script', 'cascy99pcgsnf2xjw58jeg25'));
 
+//BAD HACK timer... hangs cpu (FIXME)
+function sleep(milliSeconds){
+    var startTime = new Date().getTime(); // get the current time
+    while (new Date().getTime() < startTime + milliSeconds); // hog cpu
+}
 
 function selectMake(){
    /* verify that this document INCLUDES stuff rendered in widget above. (yes.) */
@@ -42,19 +45,24 @@ function selectMake(){
     //alert(all);
     //console.log(all);
 
-    /* wait for js to load (doesn't seem to work...) */
-    $(window).load();
-
-    //TODO: try polling until make_menu options are loaded?
-
+    sleep(1000);
     /* auto-select a specific Make... */ 
     //FIXME: make_menu is an array with stuff in it, but make_menu[0] is undefined. huh?
     var make_menu = document.getElementsByClassName("tmvwidget-make"); //[0];
+
+/*
+    //ugh, this hangs:
+    while(make_menu[0] == undefined){
+        setTimeout(function(){
+            console.log(make_menu);
+        }, 2000);
+    }
+*/
     console.log(make_menu);
 
     //TODO: make a function out of this as in http://stackoverflow.com/questions/8140862/how-to-select-a-value-in-dropdown-javascript
     var s = make_menu;
-    var v = 'BMW';
+    var v = 'bmw';
     // FIXME: it doesn't like 's.options.length', perhaps because there one of the options is empty (thx: stackoverflow.com/questions/17583366)
     for ( var i = 0; i < s.options.length; i++ ) {
         if ( s.options[i].value == v ) {

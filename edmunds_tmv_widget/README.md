@@ -10,7 +10,6 @@ _index.html
   edmunds.com/.../simple-light.css #hard-coded stuff (could make my own version)
   
   ui_edmunds.js 
-    edmunds.com/.../sdk.js
-    edmunds.com/.../tmvwidget.js
-
+    edmunds.com/.../tmvwidget.js 
+      edmunds.com/.../sdk.js #EDMUNDSAPI()
 
