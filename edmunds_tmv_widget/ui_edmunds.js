@@ -29,6 +29,8 @@
             widget.init({"includedMakes":"all","price":"tmv-invoice-msrp","showVehicles":"ALL","zip":"94720"});
             widget.render();
 
+            putPriceAtTop();
+
             //Forrest's callbacks to auto-fill widget (TODO: receive YMM from AutoTrader parser)
             //note: if we don't wait for these things to load, the lists of makes/models/years are Undefined.
             widget.on('load:makes', selectMake);
@@ -40,11 +42,19 @@
                                     selectStyle();
                                     widget.loadPrice(); //if this isn't predicated on an event, it would run first. 
                         }) );
-        }
+       }
     }
     tmv.init();
 
 }(document, 'script', 'cascy99pcgsnf2xjw58jeg25'));
+
+//put price at the top of the widget
+function putPriceAtTop(){
+    // thx: stackoverflow.com/questions/558614/reorder-divs
+    priceDiv = document.getElementsByClassName("tmvwidget-price")[0];
+    makeDiv = document.getElementsByClassName("tmvwidget-make")[0]; 
+    makeDiv.parentNode.insertBefore(priceDiv,makeDiv);
+}
 
 //thx: stackoverflow.com/questions/8140862/how-to-select-a-value-in-dropdown-javascript
 //@param s='select' menu to modify
