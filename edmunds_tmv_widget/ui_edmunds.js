@@ -35,8 +35,11 @@
             //widget.on('change:makes', (function(){ alert('change:makes'); }) ); //doesn't show alert?
             widget.on('load:models', selectModel);
             widget.on('load:years', selectYear);  
-            widget.on('load:styles', selectStyle);
-            widget.loadPrice(); //equivalent to clicking the Get Price button 
+            widget.on('load:styles', 
+                        (function(){ 
+                                    selectStyle();
+                                    widget.loadPrice(); //if this isn't predicated on an event, it would run first. 
+                        }) );
         }
     }
     tmv.init();
