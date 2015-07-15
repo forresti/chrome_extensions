@@ -56,14 +56,12 @@ function selectMake(){
     var s = make_menu;
     var v = 'BMW';
     // FIXME: it doesn't like 's.options.length', perhaps because there one of the options is empty (thx: stackoverflow.com/questions/17583366)
-/*
     for ( var i = 0; i < s.options.length; i++ ) {
         if ( s.options[i].value == v ) {
             s.options[i].selected = true;
             return;
         }
     }
-*/
 };
-selectMake();
+$(document).ready(selectMake()); //putting $(document).ready here doesn't help. (still not waiting for options to load)
 
