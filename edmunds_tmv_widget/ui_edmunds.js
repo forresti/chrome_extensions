@@ -36,6 +36,20 @@
 
 }(document, 'script', 'cascy99pcgsnf2xjw58jeg25'));
 
+//thx: stackoverflow.com/questions/8140862/how-to-select-a-value-in-dropdown-javascript
+//@param s='select' menu to modify
+//@param v=value to input to 'select' menu
+//find the matching make in the <select> drop-down, and choose it.
+function setSelectedIndex(s, v) {
+    for ( var i = 0; i < s.options.length; i++ ) {
+        if ( s.options[i].value == v ) {
+            s.options[i].selected = true;
+            s.onchange(); //trigger Edmunds widget to pull Models
+            return;
+        }
+    }
+}
+
 //TODO: take Make (e.g. 'bmw') as input
 function selectMake(){
     var make_menu = document.getElementsByClassName("tmvwidget-make")[0];
@@ -43,14 +57,7 @@ function selectMake(){
     var s = make_menu;
     var v = 'bmw';
 
-    //find the matching make in the <select> drop-down, and choose it.
-    //TODO: encapsulate the following in a function.
-    for ( var i = 0; i < s.options.length; i++ ) {
-        if ( s.options[i].value == v ) {
-            s.options[i].selected = true;
-        }
-    }
-    s.onchange(); //trigger Edmunds widget to pull Models
+    setSelectedIndex(s, v);
 };
 
 
