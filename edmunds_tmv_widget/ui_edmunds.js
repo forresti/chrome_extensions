@@ -1,4 +1,3 @@
-
 //make sure you include jquery in your HTML that calls this.
 
 /* TODO: figure how to export this in a modular way */
@@ -28,42 +27,32 @@
             var widget = new EDM.TMV(apikey, {root: 'tmvwidget', baseClass: 'tmvwidget'});
             widget.init({"includedMakes":"all","price":"tmv-invoice-msrp","showVehicles":"ALL","zip":"94720"});
             widget.render();
+
+
+            //widget.trigger('change:make', 2); //doesn't do anything. 
+            widget.on('load:makes', selectMake); 
         }
     }
     tmv.init();
 
- 
 }(document, 'script', 'cascy99pcgsnf2xjw58jeg25'));
 
-
 function selectMake(){
-   /* verify that this document INCLUDES stuff rendered in widget above. (yes.) */
-    var all = document.getElementsByTagName("*");
-    //alert(all);
-    //console.log(all);
-
-    /* wait for js to load (doesn't seem to work...) */
-    $(window).load();
-
-    //TODO: try polling until make_menu options are loaded?
-
-    /* auto-select a specific Make... */ 
-    //FIXME: make_menu is an array with stuff in it, but make_menu[0] is undefined. huh?
-    var make_menu = document.getElementsByClassName("tmvwidget-make"); //[0];
+    var make_menu = document.getElementsByClassName("tmvwidget-make")[0];
     console.log(make_menu);
-
-    //TODO: make a function out of this as in http://stackoverflow.com/questions/8140862/how-to-select-a-value-in-dropdown-javascript
     var s = make_menu;
-    var v = 'BMW';
-    // FIXME: it doesn't like 's.options.length', perhaps because there one of the options is empty (thx: stackoverflow.com/questions/17583366)
-/*
+    var v = 'bmw';
+
+    //find the matching make in the <select> drop-down, and choose it.
     for ( var i = 0; i < s.options.length; i++ ) {
         if ( s.options[i].value == v ) {
             s.options[i].selected = true;
-            return;
         }
     }
-*/
+
 };
-selectMake();
+
+
+
+//selectMake();
 
